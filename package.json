@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "dev": "npx tsc --watch",
-    "build": "npx tsc"
+    "dev": "bun build ./index.ts --outdir ./ --watch",
+    "build": "bun build ./index.ts --outdir ./"
   },
   "devDependencies": {
     "@tsconfig/strictest": "^2.0.3",
