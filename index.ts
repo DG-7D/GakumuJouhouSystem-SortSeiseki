@@ -28,7 +28,7 @@ const sortState: { key: Header, descending: boolean } = { key: "No.", descending
 
 let headers: Header[] = [];
 
-main();
+window.addEventListener("load", main);
 
 function main() {
     const tableElement = getSeisekiTableElement();
