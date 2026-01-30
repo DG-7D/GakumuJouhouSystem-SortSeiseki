@@ -3,7 +3,7 @@
 const gakkis = ["春ﾀｰﾑ", "夏ﾀｰﾑ", "前学期", "秋ﾀｰﾑ", "冬ﾀｰﾑ", "後学期"] as const;
 type Gakki = typeof gakkis[number];
 
-const allHeaders = ["No.", "科目大区分", "科目中区分", "科目小区分", "科目", "教員氏名", "単位数", "修得年度", "修得学期", "評語", "合否"] as const;
+const allHeaders = ["No.", "科目大区分", "科目中区分", "科目小区分", "時間割コード", "科目", "教員氏名", "単位数", "修得年度", "修得学期", "評語", "合否"] as const;
 type Header = typeof allHeaders[number];
 
 const hyogos = ["不", "合", "可", "良", "優", "秀"] as const;
@@ -14,6 +14,7 @@ const sortOrder: { [header in Header]: Header[] } = {
     "科目大区分": ["No."],
     "科目中区分": ["No."],
     "科目小区分": ["No."],
+    "時間割コード": ["時間割コード"],
     "科目": ["科目"],
     "教員氏名": ["教員氏名"],
     "単位数": ["単位数"],
@@ -81,6 +82,7 @@ function toSotable(tableRow: HTMLTableRowElement, header: Header) {
     const text = tableRow.cells[headers.indexOf(header)]!.textContent!.trim();
     switch (header) {
         case "No.":
+        case "時間割コード":
         case "修得年度":
             return Number.parseInt(text);
         case "単位数":

@@ -6,6 +6,7 @@ var sortOrder = {
   "科目大区分": ["No."],
   "科目中区分": ["No."],
   "科目小区分": ["No."],
+  "時間割コード": ["時間割コード"],
   "科目": ["科目"],
   "教員氏名": ["教員氏名"],
   "単位数": ["単位数"],
@@ -17,7 +18,7 @@ var sortOrder = {
 var sortMarker = document.createElement("span");
 var sortState = { key: "No.", descending: false };
 var headers = [];
-main();
+window.addEventListener("load", main);
 function main() {
   const tableElement = getSeisekiTableElement();
   if (!tableElement) {
@@ -65,6 +66,7 @@ function toSotable(tableRow, header) {
   const text = tableRow.cells[headers.indexOf(header)].textContent.trim();
   switch (header) {
     case "No.":
+    case "時間割コード":
     case "修得年度":
       return Number.parseInt(text);
     case "単位数":
