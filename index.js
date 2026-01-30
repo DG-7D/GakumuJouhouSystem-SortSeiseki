@@ -17,7 +17,7 @@ var sortOrder = {
 };
 var sortMarker = document.createElement("span");
 var sortState = { key: "No.", descending: false };
-document.getElementsByName("body")[0]?.addEventListener("load", main);
+main();
 function main() {
   const tableElement = getSeisekiTableElement();
   if (!tableElement) {
@@ -38,11 +38,7 @@ function main() {
   }
 }
 function getSeisekiTableElement() {
-  const iFrameDocument = document.getElementsByName("body")[0]?.contentDocument;
-  if (!iFrameDocument) {
-    return;
-  }
-  return [...iFrameDocument.getElementsByTagName("table")].find((tableElement) => tableElement.tHead?.rows[0]?.cells[0]?.classList.contains("seiseki-head"));
+  return [...document.getElementsByTagName("table")].find((tableElement) => tableElement.tHead?.rows[0]?.cells[0]?.classList.contains("seiseki-head"));
 }
 function sortBy(tableElement, key, descending = false) {
   const rows = [...tableElement.tBodies[0].rows];

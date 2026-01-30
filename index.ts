@@ -26,7 +26,7 @@ const sortOrder: { [header in Header]: Header[] } = {
 const sortMarker = document.createElement("span");
 const sortState: { key: Header, descending: boolean } = { key: "No.", descending: false };
 
-document.getElementsByName("body")[0]?.addEventListener("load", main);
+main();
 
 function main() {
     const tableElement = getSeisekiTableElement();
@@ -48,9 +48,7 @@ function main() {
 }
 
 function getSeisekiTableElement(): HTMLTableElement | undefined {
-    const iFrameDocument = (document.getElementsByName("body")[0] as HTMLIFrameElement | undefined)?.contentDocument;
-    if (!iFrameDocument) { return; }
-    return [...iFrameDocument.getElementsByTagName("table")].find(
+    return [...document.getElementsByTagName("table")].find(
         tableElement => tableElement.tHead?.rows[0]?.cells[0]?.classList.contains("seiseki-head")
     );
 }
