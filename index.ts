@@ -3,8 +3,8 @@
 const gakkis = ["春ﾀｰﾑ", "夏ﾀｰﾑ", "前学期", "秋ﾀｰﾑ", "冬ﾀｰﾑ", "後学期"] as const;
 type Gakki = typeof gakkis[number];
 
-const headers = ["No.", "科目大区分", "科目中区分", "科目小区分", "科目", "教員氏名", "単位数", "修得年度", "修得学期", "評語", "合否"] as const;
-type Header = typeof headers[number];
+const allHeaders = ["No.", "科目大区分", "科目中区分", "科目小区分", "科目", "教員氏名", "単位数", "修得年度", "修得学期", "評語", "合否"] as const;
+type Header = typeof allHeaders[number];
 
 const hyogos = ["不", "合", "可", "良", "優", "秀"] as const;
 type Hyogo = typeof hyogos[number];
@@ -26,6 +26,8 @@ const sortOrder: { [header in Header]: Header[] } = {
 const sortMarker = document.createElement("span");
 const sortState: { key: Header, descending: boolean } = { key: "No.", descending: false };
 
+let headers: Header[] = [];
+
 main();
 
 function main() {
@@ -34,6 +36,7 @@ function main() {
 
     for (const cell of tableElement.tHead!.rows[0]!.cells) {
         const header = cell.textContent as Header;
+        headers.push(header);
         const keys = sortOrder[header];
         cell.style.cursor = "pointer";
         cell.addEventListener("click", () => {

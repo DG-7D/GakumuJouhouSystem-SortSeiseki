@@ -1,6 +1,5 @@
 // index.ts
 var gakkis = ["春ﾀｰﾑ", "夏ﾀｰﾑ", "前学期", "秋ﾀｰﾑ", "冬ﾀｰﾑ", "後学期"];
-var headers = ["No.", "科目大区分", "科目中区分", "科目小区分", "科目", "教員氏名", "単位数", "修得年度", "修得学期", "評語", "合否"];
 var hyogos = ["不", "合", "可", "良", "優", "秀"];
 var sortOrder = {
   "No.": ["No."],
@@ -17,6 +16,7 @@ var sortOrder = {
 };
 var sortMarker = document.createElement("span");
 var sortState = { key: "No.", descending: false };
+var headers = [];
 main();
 function main() {
   const tableElement = getSeisekiTableElement();
@@ -25,6 +25,7 @@ function main() {
   }
   for (const cell of tableElement.tHead.rows[0].cells) {
     const header = cell.textContent;
+    headers.push(header);
     const keys = sortOrder[header];
     cell.style.cursor = "pointer";
     cell.addEventListener("click", () => {
